@@ -1,0 +1,27 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+/*GENERALITE*/
+.flex{
+    display: flex;
+}
+.item-center{
+    align-items: center;
+}
+.text-center{
+    text-align: center;
+}
+/*HEADER*/
+header{
+    position: sticky;
+    top: 0;
+    background-color: #0c0c0c;
+    width: 100%;
+    height: 7vh;
+    padding: 20px;
+}
+header h1{
+    color: white;
+}
