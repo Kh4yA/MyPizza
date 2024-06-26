@@ -12,6 +12,8 @@ class parentClass
     protected $fields = []; // tableau simple des champs
     protected $values = []; // tableau indexé cle valeur au format ["nom"=>"valeur","prenom"=>"valeur",....]
     protected $id = 0;
+    protected $viewPath = 'views';
+    protected $templates;
     /**
      * construit une liste de champs pour la requete
      * @return string retourne une chaine de caractere au format "`nom`, `prenom`, ..."
