@@ -9,13 +9,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../public/css/style.css">
+    <link rel="stylesheet" href="/public/css/style.css">
     <title>Home</title>
 </head>
 <body>
-    <header class="flex item-center">
-        <h1>MyPizza</h1>
-    </header>
-    <?= $content; ?>
+<?php include 'templates/fragments/header.php' ?>
 </body>
 </html>

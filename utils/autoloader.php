@@ -1,43 +1,42 @@
 <?php
 
-namespace core;
+namespace utils;
 
-class autoloader
+class Autoloader
 {
     /**
-     * Function qui enregister l'autoloader
+     * Rôle : Charge automatiquement les classes
+     * @param string $class
      */
-    static function registrer()
+    public static function autoloader($class)
     {
-        spl_autoload_register(array(__CLASS__, 'autoload'));
-    }
-    /**
-     * function qui cherche le fichier a inclure
-     * @param $class (string) le nom de la class a charger 
-     */
-    static function autoload($class)
-    {
+        // Vérifie si la classe commence par le namespace actuel
         if (strpos($class, __NAMESPACE__ . '\\') === 0) {
+            // Supprime le namespace du nom de classe
             $class = str_replace(__NAMESPACE__ . '\\', '', $class);
-            $class = str_replace('\\', '/', $class);
-            require __DIR__ . '/' . $class . '.php';
-            // je creer des modeles de chemins et test si ils exixtent
-            $cheminModeles = __DIR__ . '/../modeles' . $class . '.php';
-            $cheminInit = __DIR__ . '/../init' . $class . '.php';
-            $cheminParentClass = __DIR__ . '/../parentClass' . $class . '.php';
-            if (file_exists($cheminModeles)) {
-                include $cheminModeles;
-                echo "je charge $cheminModeles";
-                return;
-            } elseif (file_exists($cheminInit)) {
-                include $cheminInit;
-                echo "je charge $cheminInit";
-                return;
-            } elseif ($cheminParentClass) {
-                include $cheminParentClass;
-                echo "je charge $cheminParentClass";
-                return;
+            // Remplace les backslashes par des slashes dans le chemin de classe
+            $classModele = str_replace('\\', '/', $class);
+            // Création d'un tableau de chemins
+            $chemins = [
+                __DIR__ . '/utils/' . $classModele . '.php',
+                __DIR__ . '/../modeles/' . $classModele . '.php',
+                __DIR__ . '/../controllers/' . $classModele . '.php',
+                __DIR__ . '/../config/' . $classModele . '.php',
+                __DIR__ . '/../core/' . $classModele . '.php',
+                __DIR__ . '/' . $classModele . '.php',
+            ];
+            foreach ($chemins as $chemin) {
+                if (file_exists($chemin)) {
+                    include $chemin;
+                    return;
+                }
             }
         }
+        echo "je ne trouve aucune classe";
+    }
+
+    public static function register()
+    {
+        spl_autoload_register([__CLASS__, 'autoloader']);
     }
 }

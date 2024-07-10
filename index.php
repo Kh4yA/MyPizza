@@ -1,20 +1,13 @@
 <?php
-//Mise en place du fichier initilisation
 
-use app\controller\controller;
+// on inclus le fichier init 
+include_once "utils/init.php";
 
-include "utils/init/init.php";
+use utils\Main;
 
-if (isset($_GET["p"])) {
-    $p = $_GET["p"];
-} else {
-    $p = "home";
-}
+// on instncie Main
+//main est le routeur
+$app = new Main;
 
-if ($p === "home") {
-    $controleur = new controller();
-    $controleur->index();
-} elseif ($p === "CreerTaPizza") {
-    $controleur = new controller();
-    $controleur->createPizza();
-}
+//On demarre 
+$app->start();

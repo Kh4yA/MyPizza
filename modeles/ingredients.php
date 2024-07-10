@@ -2,15 +2,17 @@
 
 // class ingredient gerant les objets ingredient dans la bdd
 
-namespace app\modeles;
+namespace utils;
 
-use core\parentClass\parentClass;
+use utils\parentClass;
 
-class ingredients extends parentClass{
+class ingredients extends parentClass
+{
 
     // On valorises les attributs 
     protected $table = "ingredients";
     protected $fields = ["nom", "description", "prix", "photo"];
-    protected $id_ingredient = 0;
+    protected $id = 0;
 
 }
+
